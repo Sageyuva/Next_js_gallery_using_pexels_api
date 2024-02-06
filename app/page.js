@@ -13,18 +13,18 @@ const Page = () => {
   }, 500);
 
   const searchChange = (e) => {
-    setSearchQ(e.target.value);
+    setSearchQ(e.
+      target.value);
   };
 
   const fetchRandomImage = async () => {
     try {
       const response = await axios.get(
-        `https://api.pexels.com/v1/search?query=${searchQ + " "}`,
+        `https://api.pexels.com/v1/search?query=${searchQ}`,
         {
           headers: {
             Authorization:
-              "eIUdV12UnTsLCGGBuHEOaAtgA7R4WMaWgvWOkhkQcy2k0t6RvX1ns4tz", // Replace with your actual API key
-          },
+              "eIUdV12UnTsLCGGBuHEOaAtgA7R4WMaWgvWOkhkQcy2k0t6RvX1ns4tz",      },
         }
       );
       setCollections(response.data.photos);
@@ -33,10 +33,13 @@ const Page = () => {
     }
   };
 
+  const UpdatePhotos = () =>{
+    fetchRandomImage();
+  }
+
   useEffect(() => {
     fetchRandomImage();
-  }, [searchQ]); // Call the API whenever searchQ changes
-
+  }, []); 
   return (
     <>
       <nav className="w-[100%] text-white h-[60px] text-center text-2xl flex items-center justify-center font-bold">
@@ -50,6 +53,7 @@ const Page = () => {
           type="text"
           placeholder="Search for images"
         />
+        <button onClick={UpdatePhotos} className="flex items-center justify-center text-white bg-green-600 rounded px-3 py-1 text-xl ">Search</button>
       </div>
       <div className="p-2 w-[100%] grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 gap-2 justify-center items-center">
         {collections.map((image) => (
