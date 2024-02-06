@@ -49,7 +49,7 @@ const Page = () => {
         <input
           value={searchQ}
           onChange={(e) => searchChange(e)}
-          className="w-[75%] px-[10px] py-[5px] rounded outline-none font-semibold text-xl"
+          className="w-[65%] px-[10px] py-[5px] rounded outline-none font-semibold text-xl"
           type="text"
           placeholder="Search for images"
         />
