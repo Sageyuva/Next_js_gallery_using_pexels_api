@@ -13,9 +13,7 @@ const Page = () => {
   }, 500);
 
   const searchChange = (e) => {
-    const { value } = e.target;
-    setSearchQ(value);
-    delayedSetSearchQ(value);
+    setSearchQ(e.target.value);
   };
 
   const fetchRandomImage = async () => {
