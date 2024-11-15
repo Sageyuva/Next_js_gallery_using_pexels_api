@@ -6,12 +6,12 @@ const GalleryHome = () => {
   const [collections, setCollections] = useState([]);
   const [searchQ, setSearchQ] = useState('nature');
   const [darkMode, setDarkMode] = useState(false);
-
+  const api = process.env.REACT_APP_PEXELS_API_KEY
   const fetchRandomImage = async () => {
     try {
       const response = await axios.get(`https://api.pexels.com/v1/search?query=${searchQ}`, {
         headers: {
-          Authorization: "NHaTKPXegmPbcJDMkLBCQQQbruaRHHmgKpzpvlFxHyxPmZZNIfe91m5c",
+          Authorization: api,
         },
       });
       setCollections(response.data.photos);
