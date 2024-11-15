@@ -15,6 +15,7 @@ const GalleryHome = () => {
         },
       });
       setCollections(response.data.photos);
+      console(api?api:"api key not available")
     } catch (error) {
       console.error('Error fetching images:', error);
     }
