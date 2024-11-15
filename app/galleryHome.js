@@ -7,15 +7,16 @@ const GalleryHome = () => {
   const [searchQ, setSearchQ] = useState('nature');
   const [darkMode, setDarkMode] = useState(false);
   const api = process.env.REACT_APP_PEXELS_API_KEY
+  const apikey = process.env.API_KEY
   const fetchRandomImage = async () => {
     try {
       const response = await axios.get(`https://api.pexels.com/v1/search?query=${searchQ}`, {
         headers: {
-          Authorization: api,
+          Authorization: apikey,
         },
       });
       setCollections(response.data.photos);
-      console(api?api:"api key not available")
+      console(api?"apiok":"api key not available")
     } catch (error) {
       console.error('Error fetching images:', error);
     }
