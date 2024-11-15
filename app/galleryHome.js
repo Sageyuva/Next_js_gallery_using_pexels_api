@@ -8,12 +8,10 @@ const GalleryHome = () => {
   const [darkMode, setDarkMode] = useState(false);
 
   const fetchRandomImage = async () => {
-    if (!searchQ.trim()) return; // Prevent API call if search query is empty
-
     try {
       const response = await axios.get(`https://api.pexels.com/v1/search?query=${searchQ}`, {
         headers: {
-          Authorization: process.env.REACT_APP_PEXELS_API_KEY,
+          Authorization: "NHaTKPXegmPbcJDMkLBCQQQbruaRHHmgKpzpvlFxHyxPmZZNIfe91m5c",
         },
       });
       setCollections(response.data.photos);
@@ -22,17 +20,15 @@ const GalleryHome = () => {
     }
   };
 
-  useEffect(() => {
-    fetchRandomImage(); // Fetch initial images on component mount
-  }, []);
 
   useEffect(() => {
     document.documentElement.classList.toggle('dark', darkMode);
+    fetchRandomImage()
   }, [darkMode]);
 
   const handleSearch = (e) => {
     e.preventDefault();
-    fetchRandomImage(); // Trigger search when the button is clicked
+    fetchRandomImage();
   };
 
   return (
@@ -50,7 +46,7 @@ const GalleryHome = () => {
               {darkMode ? <Sun className="w-6 h-6 text-yellow-400" /> : <Moon className="w-6 h-6 text-gray-600" />}
             </button>
           </div>
-          <form onSubmit={handleSearch} className="flex gap-2">
+          <form className="flex gap-2">
             <div className="relative flex-1">
               <input
                 type="text"
@@ -64,7 +60,7 @@ const GalleryHome = () => {
               <Search className="absolute left-3 top-2.5 w-5 h-5 text-gray-400" />
             </div>
             <button
-              type="submit"
+             onClick={handleSearch}
               className="px-6 py-2 bg-blue-500 hover:bg-blue-600 text-white font-medium rounded-lg
                          transition-colors duration-200 flex items-center gap-2 shadow-sm"
             >
